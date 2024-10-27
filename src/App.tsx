@@ -23,6 +23,7 @@ function App() {
     }, [])
 
     return (
+
         <div className="mainDisplay">
             <ReviewList reviews={reviews} loadMore={() => {
                 if (reviews.length < totalReviewCount.current) {
@@ -32,6 +33,7 @@ function App() {
                 }
             }}></ReviewList>
         </div>
+
     );
 }
 

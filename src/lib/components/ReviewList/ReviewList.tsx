@@ -1,26 +1,72 @@
 import { Review } from "$lib/types";
-import { useState } from "react";
+import { useEffect,useRef, useState } from "react";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import { ShowMoreButton } from "./ShowMore";
+
 
 
 export function ReviewList({ reviews, loadMore }: { reviews: Review[], loadMore: () => void }) {
 
     const [showingMore, setShowMore] = useState(false);
 
-    return <div style={{
+    const [columns, setColumns] = useState(3);
+
+    const containerDiv = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // whenever size change, update # of columns
+        const resizeHandle = ()=>{
+            console.log(window.innerWidth, columns);
+            
+            if (window.innerWidth < 500  ){
+                columns != 1 &&  setColumns(1);
+            }else if (window.innerWidth < 800 ){
+                columns != 2 &&  setColumns(2);
+            }else if (window.innerWidth >  800 ){
+                columns != 3 &&  setColumns(3);
+            }
+            
+        }
+        window.addEventListener("resize",resizeHandle )
+
+        return ()=>{
+            window.removeEventListener("resize", resizeHandle )
+        }
+        // janky bs, columns in inner function closure, need to recreate function each time
+    }, [columns]
+    )
+
+    return <div className="hor" style={{
         width: "100%",
         height: "100%",
         maxWidth: "1120px",
-        columnCount: 3,
-        columnFill: "balance",
 
         // for positioning showmore button
-        position: "relative"
-    }}>
-        {reviews.map((item, index) => (
-            <ReviewItem review={item} key={index} />
-        ))}
+        position: "relative",
+        gap: "12px"
+    }}
+        ref={containerDiv}
+    >
+
+
+        {
+            // show loading message
+            reviews.length == 0 ? <h2>Loading...</h2> : undefined
+        }
+
+
+        {[...Array(columns).keys()].map((val) =>
+        // create multiple flex columns, then distribute items amongst them
+        // column count depends on current screen size.
+        {
+            return <div id={val + ""} key={val} className="ver" style={{ gap: "12px" }}>
+                {reviews.filter((_, index) => index % columns == val).map((rev, index) =>
+                    // note using index as key is fine since for each item, it's index won't change after created, in this case.
+                    <ReviewItem review={rev} key={index}></ReviewItem>
+                )}
+            </div>
+        }
+        )}
 
         {!showingMore ? <ShowMoreButton onclick={() => {
             setShowMore(true);

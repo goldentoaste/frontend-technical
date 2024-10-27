@@ -10,9 +10,6 @@
 
     /* Just set max width, let the browser shrink it as needed. No need to media query for each screen size */
     max-width: 362px;
-
-    break-inside: avoid;
-    margin-bottom: 12px;
 }
 
 .name {
