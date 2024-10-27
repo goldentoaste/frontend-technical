@@ -9,7 +9,7 @@ function App() {
 
     const initialReviewCount = 20;
     const [reviews, setReviews] = useState<Review[]>([]);
-    const totalReviewCount = useRef<number>()
+    const totalReviewCount = useRef<number>(0)
 
     useEffect(() => {
         // load initial amount of reviews
@@ -23,11 +23,15 @@ function App() {
     }, [])
 
     return (
-        <>
-            <div className="mainDisplay">
-                <ReviewList reviews={reviews} loadMore={() => {}}></ReviewList>
-            </div>
-        </>
+        <div className="mainDisplay">
+            <ReviewList reviews={reviews} loadMore={() => {
+                if (reviews.length < totalReviewCount.current) {
+                    getReviews(reviews.length, 10).then(res => {
+                        setReviews([...reviews, ...res])
+                    })
+                }
+            }}></ReviewList>
+        </div>
     );
 }
 

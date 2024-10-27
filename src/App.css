@@ -17,6 +17,8 @@ html {
 
 /* sizes standards not provided, just using numbers measured from figma page for now  */
 body {
+    color: black;
+
     padding: 24px;
     background-color: var(--bg);
 
