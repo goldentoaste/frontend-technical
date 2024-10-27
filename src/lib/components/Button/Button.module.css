@@ -1,0 +1,18 @@
+
+
+
+
+.button {
+    padding: 20px 10px;
+    border-radius: 12px;
+    color: white;
+    background-color: var(--highlight);
+    transition: background-color 400ms ease-out;
+
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.button:hover, .button:active {
+    background-color: var(--highlight-focus);
+}
