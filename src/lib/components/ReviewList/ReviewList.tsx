@@ -63,7 +63,7 @@ export function ReviewList({ reviews, loadMore, stopLoading }: { reviews: Review
 
         // for positioning showmore button
         position: "relative",
-        gap: "12px"
+        gap: "16px"
     }}
         ref={containerDiv}
     >
