@@ -43,7 +43,7 @@ export function ReviewList({ reviews, loadMore, stopLoading }: { reviews: Review
             }
         }, {
             root: null, // observer target is the entire view port
-            rootMargin: "50px",
+            rootMargin: "100px",
             threshold: 1
         })
 
@@ -63,7 +63,9 @@ export function ReviewList({ reviews, loadMore, stopLoading }: { reviews: Review
 
         // for positioning showmore button
         position: "relative",
-        gap: "16px"
+
+        gap: "16px",
+        justifyContent: "center"
     }}
         ref={containerDiv}
     >

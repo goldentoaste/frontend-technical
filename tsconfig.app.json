@@ -28,9 +28,6 @@
       "$lib/*": [
         "./src/lib/*"
       ],
-      "$root":["./src"],
-      "$root/*":["./src/*"]
-
     }
   },
   "include": [

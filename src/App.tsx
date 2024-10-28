@@ -43,7 +43,9 @@ function App() {
     return (
 
         <div className="mainDisplay">
-            <p style={{
+            <p 
+            className="heading"
+            style={{
                 color: "var(--highlight)",
                 fontWeight: "600",
                 fontSize: "12px",
@@ -56,13 +58,12 @@ function App() {
                 lineHeight: "33px"
             }}>What our customers are saying 🍦🫶🏼</h1>
             <p
+                className="description"
                 style={{
-                    margin: "8px",
                     fontSize: "16px",
                     lineHeight: "24px",
-                    textAlign: "center",
                     fontWeight: "400",
-                    maxWidth:"800px"
+                    maxWidth: "800px"
                 }}>At The Cone Zone, we're proud to serve up smiles with every scoop! Check out what our customers have to say about their favorite flavors, experiences, and sweet moments.</p>
             <ReviewList reviews={reviews} loadMore={loadMoreReviews} stopLoading={reviews.length >= totalReviewCount.current}></ReviewList>
         </div>

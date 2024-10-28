@@ -3,16 +3,51 @@
 
 
 .button {
-    padding: 20px 10px;
-    border-radius: 12px;
-    color: white;
-    background-color: var(--highlight);
-    transition: background-color 400ms ease-out;
+    display: flex;
+    position: relative;
+    z-index: 1;
 
+
+    padding: 10px 20px ;
+    color: white;
+ 
+    background-clip: padding-box;
+    transition: background 400ms ease-out;
+    
     font-weight: 500;
     font-size: 16px;
+
+    background: linear-gradient(#F472B6, #DB2777);
+    
+    border-radius: 12px;
+    border: none;
 }
 
-.button:hover, .button:active {
+.button::before{
+    content: "";
+
+    position: absolute;
+    left: 1.2px;
+    top: 1.2px;
+    width: calc(100% - 2.4px);
+    height:  calc(100% - 2.4px);
+
+    
+    z-index: -1;
+    background-color: var(--highlight);
+    border-radius: 12px;
+
+    transition: background-color 400ms ease-out;
+}
+
+.button:hover, .button:focus {
+    background: linear-gradient(#EC4899, #BE185D);
+}
+
+.button:hover::before, .button:focus::before{
     background-color: var(--highlight-focus);
+}
+
+.button:active{
+    transform: translate(0, 1.2px);
 }
