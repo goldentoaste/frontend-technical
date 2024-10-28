@@ -17,14 +17,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./src",
+
     "paths": {
       "$lib": [
-        "lib"
+        "./src/lib"
       ],
       "$lib/*": [
-        "lib/*"
-      ]
+        "./src/lib/*"
+      ],
+      "$root":["./src"],
+      "$root/*":["./src/*"]
     }
   },
   "include": [
